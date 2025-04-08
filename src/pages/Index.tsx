@@ -6,8 +6,8 @@ const Index = () => {
   const navigate = useNavigate();
   
   useEffect(() => {
-    // Redirect to the dashboard
-    navigate('/');
+    // Redirect to the auth page for login/signup
+    navigate('/auth');
   }, [navigate]);
   
   return (
@@ -21,3 +21,4 @@ const Index = () => {
 };
 
 export default Index;
+

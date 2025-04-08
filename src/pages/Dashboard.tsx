@@ -1,33 +1,142 @@
 
 import React from 'react';
-import { Dumbbell, Zap, Award, ArrowRight } from 'lucide-react';
+import { Dumbbell, Zap, Award, ArrowRight, Apple, Brain, Flower } from 'lucide-react';
 import WellnessMetrics from '@/components/WellnessMetrics';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
+import { useToast } from '@/hooks/use-toast';
 
 const Dashboard = () => {
+  const { toast } = useToast();
+  
+  const handleLogWorkout = () => {
+    toast({
+      title: "Workout Logged",
+      description: "Your workout has been successfully recorded.",
+    });
+  };
+  
+  const handleLogMeal = () => {
+    toast({
+      title: "Meal Logged",
+      description: "Your meal has been successfully recorded.",
+    });
+  };
+
   return (
     <div className="space-y-8">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Welcome back, Alex!</h1>
+          <h1 className="text-3xl font-bold tracking-tight mb-1">Welcome back, Alex!</h1>
           <p className="text-muted-foreground">Here's what's happening with your wellness journey today.</p>
         </div>
         <div className="flex gap-2">
-          <Button className="bg-holistifit-primary hover:bg-holistifit-dark">
+          <Button className="bg-holistifit-primary hover:bg-holistifit-dark" onClick={handleLogWorkout}>
             Log Workout <Dumbbell className="ml-2 h-4 w-4" />
           </Button>
-          <Button variant="outline">
+          <Button variant="outline" onClick={handleLogMeal}>
             Log Meal <Zap className="ml-2 h-4 w-4" />
           </Button>
         </div>
       </div>
 
+      <div className="grid gap-4 md:grid-cols-3">
+        <Card className="bg-gradient-to-r from-holistifit-light to-background hover:shadow-md transition-shadow duration-300">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-lg">Today's Status</CardTitle>
+          </CardHeader>
+          <CardContent className="grid grid-cols-2 gap-4">
+            <div>
+              <p className="text-sm text-muted-foreground">Calories</p>
+              <p className="text-2xl font-medium">1,240 / 2,000</p>
+              <div className="mt-1 bg-gray-200 h-1.5 rounded-full overflow-hidden">
+                <div className="bg-holistifit-primary h-full rounded-full" style={{ width: '62%' }}></div>
+              </div>
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Water</p>
+              <p className="text-2xl font-medium">4 / 8 glasses</p>
+              <div className="mt-1 bg-gray-200 h-1.5 rounded-full overflow-hidden">
+                <div className="bg-blue-500 h-full rounded-full" style={{ width: '50%' }}></div>
+              </div>
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Exercise</p>
+              <p className="text-2xl font-medium">30 min</p>
+              <div className="mt-1 bg-gray-200 h-1.5 rounded-full overflow-hidden">
+                <div className="bg-holistifit-accent h-full rounded-full" style={{ width: '60%' }}></div>
+              </div>
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Steps</p>
+              <p className="text-2xl font-medium">6,254</p>
+              <div className="mt-1 bg-gray-200 h-1.5 rounded-full overflow-hidden">
+                <div className="bg-purple-500 h-full rounded-full" style={{ width: '63%' }}></div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        
+        <Card className="md:col-span-2 hover:shadow-md transition-shadow duration-300">
+          <CardHeader className="pb-2">
+            <CardTitle className="flex items-center justify-between">
+              Today's Schedule
+              <Button variant="ghost" size="sm" className="text-xs">View All</Button>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {[
+                {
+                  time: "7:00 AM",
+                  activity: "Morning Yoga",
+                  duration: "15 min",
+                  icon: <Flower className="h-4 w-4 text-holistifit-primary" />
+                },
+                {
+                  time: "9:30 AM",
+                  activity: "HIIT Workout",
+                  duration: "30 min",
+                  icon: <Dumbbell className="h-4 w-4 text-holistifit-accent" />
+                },
+                {
+                  time: "1:00 PM",
+                  activity: "Lunch - Balanced Meal",
+                  duration: "",
+                  icon: <Apple className="h-4 w-4 text-green-500" />
+                },
+                {
+                  time: "6:00 PM",
+                  activity: "Evening Meditation",
+                  duration: "10 min",
+                  icon: <Brain className="h-4 w-4 text-purple-500" />
+                }
+              ].map((item, index) => (
+                <div key={index} className="flex items-center justify-between border-b last:border-0 pb-3 last:pb-0">
+                  <div className="flex items-center">
+                    <div className="mr-3 p-2 bg-muted rounded-full">
+                      {item.icon}
+                    </div>
+                    <div>
+                      <p className="font-medium">{item.activity}</p>
+                      <p className="text-sm text-muted-foreground">{item.time}</p>
+                    </div>
+                  </div>
+                  {item.duration && (
+                    <span className="text-sm bg-muted px-2 py-1 rounded">{item.duration}</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
       <WellnessMetrics />
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Card className="md:col-span-2 lg:col-span-1 card-hover">
+        <Card className="md:col-span-2 lg:col-span-1 hover:shadow-md transition-shadow duration-300">
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
               Daily Challenge
@@ -40,13 +149,13 @@ const Dashboard = () => {
               Walking is great for your health and helps burn calories throughout the day.
             </p>
             <div className="mt-4 flex items-center gap-4">
-              <Button variant="ghost" className="text-xs">Skip</Button>
-              <Button className="text-xs bg-holistifit-primary">Accept Challenge</Button>
+              <Button variant="ghost" className="text-xs" onClick={() => toast({ title: "Challenge skipped", description: "We'll find a better challenge for tomorrow!" })}>Skip</Button>
+              <Button className="text-xs bg-holistifit-primary hover:bg-holistifit-dark" onClick={() => toast({ title: "Challenge accepted!", description: "We'll track your progress throughout the day." })}>Accept Challenge</Button>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="card-hover">
+        <Card className="hover:shadow-md transition-shadow duration-300">
           <CardHeader>
             <CardTitle>Food Recommendations</CardTitle>
           </CardHeader>
@@ -63,7 +172,7 @@ const Dashboard = () => {
           </CardContent>
         </Card>
 
-        <Card className="card-hover">
+        <Card className="hover:shadow-md transition-shadow duration-300">
           <CardHeader>
             <CardTitle>Meal Planner</CardTitle>
           </CardHeader>
@@ -81,9 +190,53 @@ const Dashboard = () => {
         </Card>
       </div>
 
+      <div className="grid gap-4 md:grid-cols-3">
+        <Link to="/yoga" className="group">
+          <Card className="hover:shadow-md transition-all duration-300 h-full border-holistifit-primary/20 group-hover:border-holistifit-primary/60">
+            <CardContent className="p-6 flex flex-col items-center text-center">
+              <div className="p-3 bg-holistifit-light rounded-full mb-4 group-hover:bg-holistifit-light/80 transition-colors">
+                <Flower className="h-8 w-8 text-holistifit-primary" />
+              </div>
+              <h3 className="font-semibold text-lg mb-2">Yoga Practice</h3>
+              <p className="text-sm text-muted-foreground">
+                Find balance and flexibility with our guided yoga poses.
+              </p>
+            </CardContent>
+          </Card>
+        </Link>
+        
+        <Link to="/meditation" className="group">
+          <Card className="hover:shadow-md transition-all duration-300 h-full border-holistifit-primary/20 group-hover:border-holistifit-primary/60">
+            <CardContent className="p-6 flex flex-col items-center text-center">
+              <div className="p-3 bg-holistifit-light rounded-full mb-4 group-hover:bg-holistifit-light/80 transition-colors">
+                <Brain className="h-8 w-8 text-holistifit-primary" />
+              </div>
+              <h3 className="font-semibold text-lg mb-2">Meditation</h3>
+              <p className="text-sm text-muted-foreground">
+                Calm your mind and reduce stress with guided meditation sessions.
+              </p>
+            </CardContent>
+          </Card>
+        </Link>
+        
+        <Link to="/exercises" className="group">
+          <Card className="hover:shadow-md transition-all duration-300 h-full border-holistifit-primary/20 group-hover:border-holistifit-primary/60">
+            <CardContent className="p-6 flex flex-col items-center text-center">
+              <div className="p-3 bg-holistifit-light rounded-full mb-4 group-hover:bg-holistifit-light/80 transition-colors">
+                <Dumbbell className="h-8 w-8 text-holistifit-primary" />
+              </div>
+              <h3 className="font-semibold text-lg mb-2">Exercise Library</h3>
+              <p className="text-sm text-muted-foreground">
+                Discover effective workouts tailored to your fitness goals.
+              </p>
+            </CardContent>
+          </Card>
+        </Link>
+      </div>
+
       <h2 className="text-xl font-semibold mt-8 mb-4">Today's Tips</h2>
       <div className="grid gap-4 md:grid-cols-2">
-        <Card className="bg-holistifit-light border-holistifit-primary card-hover">
+        <Card className="bg-holistifit-light border-holistifit-primary/20 hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <h3 className="font-semibold text-holistifit-primary">Nutrition Tip</h3>
             <p className="mt-2 text-sm">
@@ -92,7 +245,7 @@ const Dashboard = () => {
           </CardContent>
         </Card>
         
-        <Card className="bg-holistifit-light border-holistifit-secondary card-hover">
+        <Card className="bg-holistifit-light border-holistifit-primary/20 hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <h3 className="font-semibold text-holistifit-primary">Fitness Tip</h3>
             <p className="mt-2 text-sm">
