@@ -1,0 +1,34 @@
+
+{
+  "meal-images": [
+    { "id": "breakfast-1", "path": "/meal-breakfast-m.jpg", "alt": "Greek yogurt with berries" },
+    { "id": "breakfast-2", "path": "/meal-breakfast-t.jpg", "alt": "Avocado toast with egg" },
+    { "id": "breakfast-3", "path": "/meal-breakfast-w.jpg", "alt": "Overnight oats with fruits" },
+    { "id": "lunch-1", "path": "/meal-lunch-m.jpg", "alt": "Grilled chicken salad" },
+    { "id": "lunch-2", "path": "/meal-lunch-t.jpg", "alt": "Quinoa bowl with vegetables" },
+    { "id": "lunch-3", "path": "/meal-lunch-w.jpg", "alt": "Salmon with brown rice" },
+    { "id": "dinner-1", "path": "/meal-dinner-m.jpg", "alt": "Baked fish with vegetables" },
+    { "id": "dinner-2", "path": "/meal-dinner-t.jpg", "alt": "Tofu stir fry" },
+    { "id": "dinner-3", "path": "/meal-dinner-w.jpg", "alt": "Turkey meatballs with zucchini noodles" }
+  ],
+  "yoga-images": [
+    { "id": "yoga-1", "path": "/yoga-1.jpg", "alt": "Warrior pose" },
+    { "id": "yoga-2", "path": "/yoga-2.jpg", "alt": "Tree pose" },
+    { "id": "yoga-3", "path": "/yoga-3.jpg", "alt": "Downward dog pose" }
+  ],
+  "meditation-images": [
+    { "id": "meditation-1", "path": "/meditation-1.jpg", "alt": "Person meditating by the beach" },
+    { "id": "meditation-2", "path": "/meditation-2.jpg", "alt": "Meditation in lotus position" },
+    { "id": "meditation-3", "path": "/meditation-3.jpg", "alt": "Person meditating in a forest" }
+  ],
+  "exercise-images": [
+    { "id": "exercise-1", "path": "/exercise-1.jpg", "alt": "Person doing push-ups" },
+    { "id": "exercise-2", "path": "/exercise-2.jpg", "alt": "Weightlifting workout" },
+    { "id": "exercise-3", "path": "/exercise-3.jpg", "alt": "Cardio workout" }
+  ],
+  "profile-images": [
+    { "id": "profile-1", "path": "/profile-default.jpg", "alt": "Default user profile" },
+    { "id": "profile-2", "path": "/profile-athlete.jpg", "alt": "Athlete profile" },
+    { "id": "profile-3", "path": "/profile-trainer.jpg", "alt": "Trainer profile" }
+  ]
+}

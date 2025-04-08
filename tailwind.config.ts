@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -70,6 +69,19 @@ export default {
 					accent: "#FF5722",
 					light: "#E8F5E9",
 					dark: "#1B5E20"
+				},
+				// Olive colors
+				olive: {
+					50: "#F9FAEC",
+					100: "#F1F3D6",
+					200: "#E3E7AD",
+					300: "#D4DB85",
+					400: "#C6CF5C",
+					500: "#A8B144",
+					600: "#848E36",
+					700: "#5F6727",
+					800: "#3B4119",
+					900: "#1D200C",
 				}
 			},
 			borderRadius: {
@@ -122,6 +134,10 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.4s ease-out',
 				'pulse-subtle': 'pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+			},
+			backgroundImage: {
+				'gradient-olive': 'linear-gradient(to right, rgb(210, 221, 153), rgb(236, 240, 214))',
+				'gradient-fitness': 'linear-gradient(to right, rgba(38, 92, 46, 0.8), rgba(38, 92, 46, 0.2))',
 			}
 		}
 	},
