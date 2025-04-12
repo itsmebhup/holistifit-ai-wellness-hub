@@ -17,6 +17,7 @@ import MeditationPage from "./pages/MeditationPage";
 import ExercisePage from "./pages/ExercisePage";
 import SubscriptionPage from "./pages/SubscriptionPage";
 import FeedbackPage from "./pages/FeedbackPage";
+import SettingsPage from "./pages/SettingsPage";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/exercises" element={<MainLayout><ExercisePage /></MainLayout>} />
           <Route path="/subscription" element={<MainLayout><SubscriptionPage /></MainLayout>} />
           <Route path="/feedback" element={<MainLayout><FeedbackPage /></MainLayout>} />
+          <Route path="/settings" element={<MainLayout><SettingsPage /></MainLayout>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

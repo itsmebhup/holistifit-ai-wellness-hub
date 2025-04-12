@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Menu, X, User, Settings } from 'lucide-react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import SidebarNav from './SidebarNav';
 import { Button } from '@/components/ui/button';
 import ThemeToggle from '@/components/ThemeToggle';
@@ -13,6 +13,7 @@ interface MainLayoutProps {
 const MainLayout = ({ children }: MainLayoutProps) => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <div className="flex min-h-screen bg-background dark:bg-gray-900">
@@ -43,7 +44,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
         <div className="h-14 border-b bg-card dark:bg-gray-800 flex items-center justify-end px-4 md:px-6">
           <div className="flex items-center space-x-2">
             <ThemeToggle />
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" onClick={() => navigate('/settings')}>
               <Settings size={18} />
             </Button>
             <Button variant="ghost" size="icon">
