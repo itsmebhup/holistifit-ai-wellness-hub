@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Dumbbell, Zap, Award, ArrowRight, Apple, Brain, Flower } from 'lucide-react';
 import WellnessMetrics from '@/components/WellnessMetrics';
@@ -6,6 +5,9 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
+import yogaImage from '@/assets/images/yoga-dashboard.jpg';
+import meditationImage from '@/assets/images/meditation-dashboard.jpg';
+import fitnessImage from '@/assets/images/fitness-dashboard.jpg';
 
 const Dashboard = () => {
   const { toast } = useToast();
@@ -26,6 +28,7 @@ const Dashboard = () => {
 
   return (
     <div className="space-y-8">
+      {/* Remove "Home" text and keep welcome message */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight mb-1">Welcome back, Alex!</h1>
@@ -193,10 +196,14 @@ const Dashboard = () => {
       <div className="grid gap-4 md:grid-cols-3">
         <Link to="/yoga" className="group">
           <Card className="hover:shadow-md transition-all duration-300 h-full border-holistifit-primary/20 group-hover:border-holistifit-primary/60">
+            <div className="aspect-video overflow-hidden rounded-t-lg">
+              <img 
+                src={yogaImage} 
+                alt="Yoga Practice" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+              />
+            </div>
             <CardContent className="p-6 flex flex-col items-center text-center">
-              <div className="p-3 bg-holistifit-light rounded-full mb-4 group-hover:bg-holistifit-light/80 transition-colors">
-                <Flower className="h-8 w-8 text-holistifit-primary" />
-              </div>
               <h3 className="font-semibold text-lg mb-2">Yoga Practice</h3>
               <p className="text-sm text-muted-foreground">
                 Find balance and flexibility with our guided yoga poses.
@@ -207,10 +214,14 @@ const Dashboard = () => {
         
         <Link to="/meditation" className="group">
           <Card className="hover:shadow-md transition-all duration-300 h-full border-holistifit-primary/20 group-hover:border-holistifit-primary/60">
+            <div className="aspect-video overflow-hidden rounded-t-lg">
+              <img 
+                src={meditationImage} 
+                alt="Meditation" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+              />
+            </div>
             <CardContent className="p-6 flex flex-col items-center text-center">
-              <div className="p-3 bg-holistifit-light rounded-full mb-4 group-hover:bg-holistifit-light/80 transition-colors">
-                <Brain className="h-8 w-8 text-holistifit-primary" />
-              </div>
               <h3 className="font-semibold text-lg mb-2">Meditation</h3>
               <p className="text-sm text-muted-foreground">
                 Calm your mind and reduce stress with guided meditation sessions.
@@ -221,10 +232,14 @@ const Dashboard = () => {
         
         <Link to="/exercises" className="group">
           <Card className="hover:shadow-md transition-all duration-300 h-full border-holistifit-primary/20 group-hover:border-holistifit-primary/60">
+            <div className="aspect-video overflow-hidden rounded-t-lg">
+              <img 
+                src={fitnessImage} 
+                alt="Exercise Library" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+              />
+            </div>
             <CardContent className="p-6 flex flex-col items-center text-center">
-              <div className="p-3 bg-holistifit-light rounded-full mb-4 group-hover:bg-holistifit-light/80 transition-colors">
-                <Dumbbell className="h-8 w-8 text-holistifit-primary" />
-              </div>
               <h3 className="font-semibold text-lg mb-2">Exercise Library</h3>
               <p className="text-sm text-muted-foreground">
                 Discover effective workouts tailored to your fitness goals.
