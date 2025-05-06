@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Dumbbell, Zap, Award, ArrowRight, Apple, Brain, Flower } from 'lucide-react';
 import WellnessMetrics from '@/components/WellnessMetrics';
@@ -8,6 +9,9 @@ import { useToast } from '@/hooks/use-toast';
 import yogaImage from '@/assets/images/yoga-dashboard.jpg';
 import meditationImage from '@/assets/images/meditation-dashboard.jpg';
 import fitnessImage from '@/assets/images/fitness-dashboard.jpg';
+import nutritionImage from '@/assets/images/nutrition-dashboard.jpg';
+import mealPlanImage from '@/assets/images/meal-plan-dashboard.jpg';
+import challengeImage from '@/assets/images/challenge-dashboard.jpg';
 
 const Dashboard = () => {
   const { toast } = useToast();
@@ -146,7 +150,14 @@ const Dashboard = () => {
               <Award className="h-5 w-5 text-holistifit-accent" />
             </CardTitle>
           </CardHeader>
-          <CardContent>
+          <div className="aspect-video w-full bg-muted overflow-hidden">
+            <img 
+              src={challengeImage} 
+              alt="Daily Challenge"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <CardContent className="mt-4">
             <p className="text-lg font-medium">Take 10,000 steps today</p>
             <p className="text-sm text-muted-foreground mt-1">
               Walking is great for your health and helps burn calories throughout the day.
@@ -162,7 +173,14 @@ const Dashboard = () => {
           <CardHeader>
             <CardTitle>Food Recommendations</CardTitle>
           </CardHeader>
-          <CardContent>
+          <div className="aspect-video w-full bg-muted overflow-hidden">
+            <img 
+              src={nutritionImage} 
+              alt="Food Recommendations"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <CardContent className="mt-2">
             <p className="text-sm text-muted-foreground">
               Based on your profile and goals, we have some personalized food recommendations for you.
             </p>
@@ -179,7 +197,14 @@ const Dashboard = () => {
           <CardHeader>
             <CardTitle>Meal Planner</CardTitle>
           </CardHeader>
-          <CardContent>
+          <div className="aspect-video w-full bg-muted overflow-hidden">
+            <img 
+              src={mealPlanImage} 
+              alt="Meal Planner"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <CardContent className="mt-2">
             <p className="text-sm text-muted-foreground">
               Check out your customized meal plan for the week to stay on track with your nutrition goals.
             </p>
