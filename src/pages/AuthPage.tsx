@@ -11,17 +11,48 @@ import { Apple, LogIn, Mail, User, UserPlus } from 'lucide-react';
 
 const AuthPage = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id.replace('signup-', '')]: value
+    }));
+  };
 
   // Demo login functionality - would connect to backend in production
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
+    // Get stored user data for demo purposes
+    const userData = localStorage.getItem('holistifit-user');
+    let userName = "User";
+    
+    if (userData) {
+      try {
+        const parsedUser = JSON.parse(userData);
+        if (parsedUser.name) {
+          userName = parsedUser.name;
+        }
+      } catch (e) {
+        console.error("Error parsing user data", e);
+      }
+    }
+    
     // Simulate login process
     setTimeout(() => {
       setIsLoading(false);
+      // Store just the name for simplicity in this demo
+      localStorage.setItem('holistifit-current-user', JSON.stringify({ name: userName }));
       toast({
         title: "Success!",
         description: "You've successfully logged in.",
@@ -35,9 +66,30 @@ const AuthPage = () => {
     e.preventDefault();
     setIsLoading(true);
     
+    if (formData.password !== formData.confirmPassword) {
+      setIsLoading(false);
+      toast({
+        title: "Error",
+        description: "Passwords don't match. Please try again.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
     // Simulate signup process
     setTimeout(() => {
       setIsLoading(false);
+      // Store user data in localStorage (for demo purposes only)
+      localStorage.setItem('holistifit-user', JSON.stringify({
+        name: formData.name,
+        email: formData.email
+      }));
+      
+      // Also set as current user
+      localStorage.setItem('holistifit-current-user', JSON.stringify({
+        name: formData.name
+      }));
+      
       toast({
         title: "Account created!",
         description: "Your account has been created successfully.",
@@ -74,7 +126,14 @@ const AuthPage = () => {
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
-                    <Input id="email" type="email" placeholder="hello@example.com" required />
+                    <Input 
+                      id="email" 
+                      type="email" 
+                      placeholder="hello@example.com" 
+                      required 
+                      onChange={handleInputChange}
+                      value={formData.email}
+                    />
                   </div>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
@@ -83,7 +142,13 @@ const AuthPage = () => {
                         Forgot password?
                       </a>
                     </div>
-                    <Input id="password" type="password" required />
+                    <Input 
+                      id="password" 
+                      type="password" 
+                      required 
+                      onChange={handleInputChange}
+                      value={formData.password}
+                    />
                   </div>
                 </CardContent>
                 <CardFooter className="flex flex-col space-y-4">
@@ -136,19 +201,44 @@ const AuthPage = () => {
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="name">Full Name</Label>
-                    <Input id="name" placeholder="John Doe" required />
+                    <Input 
+                      id="name" 
+                      placeholder="John Doe" 
+                      required 
+                      onChange={handleInputChange}
+                      value={formData.name}
+                    />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="signup-email">Email</Label>
-                    <Input id="signup-email" type="email" placeholder="hello@example.com" required />
+                    <Input 
+                      id="signup-email" 
+                      type="email" 
+                      placeholder="hello@example.com" 
+                      required 
+                      onChange={handleInputChange}
+                      value={formData.email}
+                    />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="signup-password">Password</Label>
-                    <Input id="signup-password" type="password" required />
+                    <Input 
+                      id="signup-password" 
+                      type="password" 
+                      required 
+                      onChange={handleInputChange}
+                      value={formData.password}
+                    />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="confirm-password">Confirm Password</Label>
-                    <Input id="confirm-password" type="password" required />
+                    <Label htmlFor="confirmPassword">Confirm Password</Label>
+                    <Input 
+                      id="confirmPassword" 
+                      type="password" 
+                      required 
+                      onChange={handleInputChange}
+                      value={formData.confirmPassword}
+                    />
                   </div>
                 </CardContent>
                 <CardFooter className="flex flex-col space-y-4">

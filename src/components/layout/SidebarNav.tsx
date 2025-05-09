@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
   Home, 
@@ -52,8 +52,25 @@ interface SidebarNavProps {
 const SidebarNav = ({ activePath }: SidebarNavProps) => {
   const { toast } = useToast();
   const navigate = useNavigate();
+  const [userName, setUserName] = useState("User");
+  
+  useEffect(() => {
+    // Get the user's name from localStorage
+    const storedUser = localStorage.getItem('holistifit-current-user');
+    if (storedUser) {
+      try {
+        const userData = JSON.parse(storedUser);
+        if (userData.name) {
+          setUserName(userData.name);
+        }
+      } catch (e) {
+        console.error("Error parsing user data", e);
+      }
+    }
+  }, []);
   
   const handleLogout = () => {
+    localStorage.removeItem('holistifit-current-user');
     toast({
       title: "Logged out",
       description: "You have been successfully logged out.",
@@ -156,7 +173,7 @@ const SidebarNav = ({ activePath }: SidebarNavProps) => {
               <User size={14} />
             </div>
             <div>
-              <p className="text-sm font-medium">Alex</p>
+              <p className="text-sm font-medium">{userName}</p>
               <p className="text-xs text-muted-foreground">Premium</p>
             </div>
           </div>

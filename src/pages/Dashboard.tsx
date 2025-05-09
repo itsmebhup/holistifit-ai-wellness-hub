@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dumbbell, Zap, Award, ArrowRight, Apple, Brain, Flower } from 'lucide-react';
 import WellnessMetrics from '@/components/WellnessMetrics';
 import { Button } from '@/components/ui/button';
@@ -18,6 +18,22 @@ const challengeImage = "/placeholder.svg";
 
 const Dashboard = () => {
   const { toast } = useToast();
+  const [userName, setUserName] = useState("User");
+  
+  useEffect(() => {
+    // Get the user's name from localStorage
+    const storedUser = localStorage.getItem('holistifit-current-user');
+    if (storedUser) {
+      try {
+        const userData = JSON.parse(storedUser);
+        if (userData.name) {
+          setUserName(userData.name);
+        }
+      } catch (e) {
+        console.error("Error parsing user data", e);
+      }
+    }
+  }, []);
   
   const handleLogWorkout = () => {
     toast({
@@ -35,10 +51,10 @@ const Dashboard = () => {
 
   return (
     <div className="space-y-8">
-      {/* Remove "Home" text and keep welcome message */}
+      {/* Replace "Alex" with the dynamic user name */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight mb-1">Welcome back, Alex!</h1>
+          <h1 className="text-3xl font-bold tracking-tight mb-1">Welcome back, {userName}!</h1>
           <p className="text-muted-foreground">Here's what's happening with your wellness journey today.</p>
         </div>
         <div className="flex gap-2">
@@ -302,4 +318,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
