@@ -6,12 +6,15 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
-import yogaImage from '@/assets/images/yoga-dashboard.jpg';
-import meditationImage from '@/assets/images/meditation-dashboard.jpg';
-import fitnessImage from '@/assets/images/fitness-dashboard.jpg';
-import nutritionImage from '@/assets/images/nutrition-dashboard.jpg';
-import mealPlanImage from '@/assets/images/meal-plan-dashboard.jpg';
-import challengeImage from '@/assets/images/challenge-dashboard.jpg';
+
+// Instead of importing images directly, we'll use placeholder images from public folder
+// and reference them with relative paths
+const yogaImage = "/placeholder.svg";
+const meditationImage = "/placeholder.svg";
+const fitnessImage = "/placeholder.svg";
+const nutritionImage = "/placeholder.svg";
+const mealPlanImage = "/placeholder.svg";
+const challengeImage = "/placeholder.svg";
 
 const Dashboard = () => {
   const { toast } = useToast();
@@ -299,3 +302,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
