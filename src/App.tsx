@@ -15,6 +15,7 @@ import AboutPage from "./pages/AboutPage";
 import YogaPage from "./pages/YogaPage";
 import MeditationPage from "./pages/MeditationPage";
 import ExercisePage from "./pages/ExercisePage";
+import ProgressPage from "./pages/ProgressPage";
 import SubscriptionPage from "./pages/SubscriptionPage";
 import FeedbackPage from "./pages/FeedbackPage";
 import SettingsPage from "./pages/SettingsPage";
@@ -37,6 +38,7 @@ const App = () => (
           <Route path="/yoga" element={<MainLayout><YogaPage /></MainLayout>} />
           <Route path="/meditation" element={<MainLayout><MeditationPage /></MainLayout>} />
           <Route path="/exercises" element={<MainLayout><ExercisePage /></MainLayout>} />
+          <Route path="/progress" element={<MainLayout><ProgressPage /></MainLayout>} />
           <Route path="/subscription" element={<MainLayout><SubscriptionPage /></MainLayout>} />
           <Route path="/feedback" element={<MainLayout><FeedbackPage /></MainLayout>} />
           <Route path="/settings" element={<MainLayout><SettingsPage /></MainLayout>} />
